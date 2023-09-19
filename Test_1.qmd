@@ -1,0 +1,42 @@
+---
+title: "Demo2"
+format: docx
+editor: visual
+---
+
+# Create Environment
+```{r}
+library(ggplot2)
+library(gtsummary)
+library(dplyr)
+library(haven)
+library(readxl)
+```
+
+# Read Data
+
+```{r}
+Covid_Eld <- read_xlsx("Elderly COVID-19 version 02.xlsx") 
+```
+
+# Summarize Data
+
+```{r}
+tbl_summary(Covid_Eld)
+```
+
+# by Gender
+```{r}
+By_Gender <- tbl_summary(Covid_Eld,
+            by    = Gender)
+
+By_Gender
+```
+
+# Plotting Graph (Age)
+```{r}
+bar_plot <- 
+  ggplot(data = Covid_Eld, mapping = aes(x = Age)) +
+  geom_bar(alpha = 0.3, fill = "orange", linetype = 1.5, color = "black") 
+bar_plot
+```
